@@ -1,0 +1,31 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: demo
+  http:
+    encodeing:
+      charset: utf-8
+      force: true
+  servlet:
+    multipart:
+      max-file-size: 10240MB
+      max-request-size: 10240MB
+  freemarker:
+    allow-request-override: false
+    cache: false
+    check-template-location: true
+    charset: UTF-8
+    content-type: text/html; charset=utf-8
+    expose-request-attributes: false
+    expose-session-attributes: false
+    expose-spring-macro-helpers: false
+    suffix: .ftl
+    template-loader-path: classpath:/templates
+logging:
+  config: classpath:logback-spring.xml
+server:
+  servlet:
+    context-path: /demo
+  tomcat:
+    max-http-post-size: 1024000000
