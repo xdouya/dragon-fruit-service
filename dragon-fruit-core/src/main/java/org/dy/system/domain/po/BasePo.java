@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -16,12 +18,9 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public abstract class BasePo {
-    private String id;
-    private String createdBy;
-    private Date createTime;
-    private String lastUpdatedBy;
-    private Date lastUpdateTime;
-    private String lastUpdateIp;
-    private Integer version;
+public abstract class BasePo implements Serializable {
+    private String createBy;
+    private String updatedBy;
+    private Timestamp createTime;
+    private Timestamp updateTime;
 }

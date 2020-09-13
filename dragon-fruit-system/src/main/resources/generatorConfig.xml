@@ -21,7 +21,7 @@
 
         <!-- 必须要有的，使用这个配置链接数据库-->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/dycai?serverTimezone=UTC"
+                        connectionURL="jdbc:mysql://192.168.0.103:3306/dragon_fruit?serverTimezone=UTC"
                         userId="root" password="088114"/>
 
         <javaTypeResolver>
@@ -29,27 +29,27 @@
             <property name="nullCatalogMeansCurrent" value="true" />
         </javaTypeResolver>
 
-        <!-- 生成接口位置-->
-<!--        <javaClientGenerator type="XMLMAPPER" targetPackage="com.server.mapper" targetProject="src/main/java">-->
-<!--            <property name="enableSubPackages" value="true"/>-->
-<!--        </javaClientGenerator>-->
-
         <!-- 生成模型的包名和位置-->
-        <javaModelGenerator targetProject="src/main/java" targetPackage="org.person.dy.business.domain.po">
+        <javaModelGenerator targetProject="src/main/java" targetPackage="org.dy.system.domain.po">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
         <!-- 生成映射文件的包名和位置-->
-        <sqlMapGenerator targetProject="src/main/java" targetPackage="org.person.dy.business.mapper">
+        <sqlMapGenerator targetProject="src/main/java" targetPackage="org.dy.system.mapper">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
+        <!--生成接口位置-->
+        <javaClientGenerator  type="XMLMAPPER"  targetProject="src/main/java" targetPackage="org.dy.system.dao">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
 
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
-        <table tableName="user_info" domainObjectName="UserPo"
+        <table tableName="sys_user" domainObjectName="UserPo"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false"/>
+               selectByExampleQueryId="false">
+        </table>
     </context>
 </generatorConfiguration>

@@ -4,7 +4,7 @@ server:
 spring:
   datasource:
     druid:
-      url: jdbc:mysql://localhost:3306/dycai?useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true&useSSL=false&&serverTimezone=UTC
+      url: jdbc:mysql://192.168.0.103:3306:3306/dycai?useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true&useSSL=false&&serverTimezone=UTC
       username: root
       password: "088114"
       driver-class-name: com.mysql.cj.jdbc.Driver
@@ -15,7 +15,7 @@ spring:
       filters: stat,wall
       min-evictable-idle-time-millis: 3600000
   redis:
-    host: localhost
+    host: 192.168.0.103:3306
     port: 6379
-    password:
+    password: "dy088114"
     database: 0

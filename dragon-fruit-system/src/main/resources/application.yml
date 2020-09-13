@@ -3,10 +3,6 @@ spring:
     active: dev
   application:
     name: demo
-  http:
-    encodeing:
-      charset: utf-8
-      force: true
   servlet:
     multipart:
       max-file-size: 10240MB
