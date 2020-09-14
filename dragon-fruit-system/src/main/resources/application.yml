@@ -22,6 +22,6 @@ logging:
   config: classpath:logback-spring.xml
 server:
   servlet:
-    context-path: /demo
-  tomcat:
-    max-http-post-size: 1024000000
+    context-path: /api
+mybatis:
+  mapper-locations: classpath*:org/dysystem/mapper/*.xml

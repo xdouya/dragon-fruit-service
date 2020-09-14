@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dy.system.dao.QuartzLogPoMapper">
+  <resultMap id="BaseResultMap" type="org.dy.system.domain.po.QuartzLogPo">
+    <id column="log_id" jdbcType="BIGINT" property="logId" />
+    <result column="bean_name" jdbcType="VARCHAR" property="beanName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="cron_expression" jdbcType="VARCHAR" property="cronExpression" />
+    <result column="is_success" jdbcType="BIT" property="isSuccess" />
+    <result column="job_name" jdbcType="VARCHAR" property="jobName" />
+    <result column="method_name" jdbcType="VARCHAR" property="methodName" />
+    <result column="params" jdbcType="VARCHAR" property="params" />
+    <result column="time" jdbcType="BIGINT" property="time" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="org.dy.system.domain.po.QuartzLogPo">
+    <result column="exception_detail" jdbcType="LONGVARCHAR" property="exceptionDetail" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    log_id, bean_name, create_time, cron_expression, is_success, job_name, method_name, 
+    params, time
+  </sql>
+  <sql id="Blob_Column_List">
+    exception_detail
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sys_quartz_log
+    where log_id = #{logId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sys_quartz_log
+    where log_id = #{logId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="org.dy.system.domain.po.QuartzLogPo">
+    insert into sys_quartz_log (log_id, bean_name, create_time, 
+      cron_expression, is_success, job_name, 
+      method_name, params, time, 
+      exception_detail)
+    values (#{logId,jdbcType=BIGINT}, #{beanName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{cronExpression,jdbcType=VARCHAR}, #{isSuccess,jdbcType=BIT}, #{jobName,jdbcType=VARCHAR}, 
+      #{methodName,jdbcType=VARCHAR}, #{params,jdbcType=VARCHAR}, #{time,jdbcType=BIGINT}, 
+      #{exceptionDetail,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.dy.system.domain.po.QuartzLogPo">
+    insert into sys_quartz_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="logId != null">
+        log_id,
+      </if>
+      <if test="beanName != null">
+        bean_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="cronExpression != null">
+        cron_expression,
+      </if>
+      <if test="isSuccess != null">
+        is_success,
+      </if>
+      <if test="jobName != null">
+        job_name,
+      </if>
+      <if test="methodName != null">
+        method_name,
+      </if>
+      <if test="params != null">
+        params,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="exceptionDetail != null">
+        exception_detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="logId != null">
+        #{logId,jdbcType=BIGINT},
+      </if>
+      <if test="beanName != null">
+        #{beanName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cronExpression != null">
+        #{cronExpression,jdbcType=VARCHAR},
+      </if>
+      <if test="isSuccess != null">
+        #{isSuccess,jdbcType=BIT},
+      </if>
+      <if test="jobName != null">
+        #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="methodName != null">
+        #{methodName,jdbcType=VARCHAR},
+      </if>
+      <if test="params != null">
+        #{params,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=BIGINT},
+      </if>
+      <if test="exceptionDetail != null">
+        #{exceptionDetail,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.dy.system.domain.po.QuartzLogPo">
+    update sys_quartz_log
+    <set>
+      <if test="beanName != null">
+        bean_name = #{beanName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cronExpression != null">
+        cron_expression = #{cronExpression,jdbcType=VARCHAR},
+      </if>
+      <if test="isSuccess != null">
+        is_success = #{isSuccess,jdbcType=BIT},
+      </if>
+      <if test="jobName != null">
+        job_name = #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="methodName != null">
+        method_name = #{methodName,jdbcType=VARCHAR},
+      </if>
+      <if test="params != null">
+        params = #{params,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=BIGINT},
+      </if>
+      <if test="exceptionDetail != null">
+        exception_detail = #{exceptionDetail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where log_id = #{logId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="org.dy.system.domain.po.QuartzLogPo">
+    update sys_quartz_log
+    set bean_name = #{beanName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      cron_expression = #{cronExpression,jdbcType=VARCHAR},
+      is_success = #{isSuccess,jdbcType=BIT},
+      job_name = #{jobName,jdbcType=VARCHAR},
+      method_name = #{methodName,jdbcType=VARCHAR},
+      params = #{params,jdbcType=VARCHAR},
+      time = #{time,jdbcType=BIGINT},
+      exception_detail = #{exceptionDetail,jdbcType=LONGVARCHAR}
+    where log_id = #{logId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.dy.system.domain.po.QuartzLogPo">
+    update sys_quartz_log
+    set bean_name = #{beanName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      cron_expression = #{cronExpression,jdbcType=VARCHAR},
+      is_success = #{isSuccess,jdbcType=BIT},
+      job_name = #{jobName,jdbcType=VARCHAR},
+      method_name = #{methodName,jdbcType=VARCHAR},
+      params = #{params,jdbcType=VARCHAR},
+      time = #{time,jdbcType=BIGINT}
+    where log_id = #{logId,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="org.dy.system.domain.po.QuartzLogPo">
+    <id column="log_id" jdbcType="BIGINT" property="logId" />
+    <result column="bean_name" jdbcType="VARCHAR" property="beanName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="cron_expression" jdbcType="VARCHAR" property="cronExpression" />
+    <result column="is_success" jdbcType="BIT" property="isSuccess" />
+    <result column="job_name" jdbcType="VARCHAR" property="jobName" />
+    <result column="method_name" jdbcType="VARCHAR" property="methodName" />
+    <result column="params" jdbcType="VARCHAR" property="params" />
+    <result column="time" jdbcType="BIGINT" property="time" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="org.dy.system.domain.po.QuartzLogPo">
+    <result column="exception_detail" jdbcType="LONGVARCHAR" property="exceptionDetail" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    log_id, bean_name, create_time, cron_expression, is_success, job_name, method_name, 
+    params, time
+  </sql>
+  <sql id="Blob_Column_List">
+    exception_detail
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sys_quartz_log
+    where log_id = #{logId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sys_quartz_log
+    where log_id = #{logId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="org.dy.system.domain.po.QuartzLogPo">
+    insert into sys_quartz_log (log_id, bean_name, create_time, 
+      cron_expression, is_success, job_name, 
+      method_name, params, time, 
+      exception_detail)
+    values (#{logId,jdbcType=BIGINT}, #{beanName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{cronExpression,jdbcType=VARCHAR}, #{isSuccess,jdbcType=BIT}, #{jobName,jdbcType=VARCHAR}, 
+      #{methodName,jdbcType=VARCHAR}, #{params,jdbcType=VARCHAR}, #{time,jdbcType=BIGINT}, 
+      #{exceptionDetail,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.dy.system.domain.po.QuartzLogPo">
+    insert into sys_quartz_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="logId != null">
+        log_id,
+      </if>
+      <if test="beanName != null">
+        bean_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="cronExpression != null">
+        cron_expression,
+      </if>
+      <if test="isSuccess != null">
+        is_success,
+      </if>
+      <if test="jobName != null">
+        job_name,
+      </if>
+      <if test="methodName != null">
+        method_name,
+      </if>
+      <if test="params != null">
+        params,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="exceptionDetail != null">
+        exception_detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="logId != null">
+        #{logId,jdbcType=BIGINT},
+      </if>
+      <if test="beanName != null">
+        #{beanName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cronExpression != null">
+        #{cronExpression,jdbcType=VARCHAR},
+      </if>
+      <if test="isSuccess != null">
+        #{isSuccess,jdbcType=BIT},
+      </if>
+      <if test="jobName != null">
+        #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="methodName != null">
+        #{methodName,jdbcType=VARCHAR},
+      </if>
+      <if test="params != null">
+        #{params,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=BIGINT},
+      </if>
+      <if test="exceptionDetail != null">
+        #{exceptionDetail,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.dy.system.domain.po.QuartzLogPo">
+    update sys_quartz_log
+    <set>
+      <if test="beanName != null">
+        bean_name = #{beanName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cronExpression != null">
+        cron_expression = #{cronExpression,jdbcType=VARCHAR},
+      </if>
+      <if test="isSuccess != null">
+        is_success = #{isSuccess,jdbcType=BIT},
+      </if>
+      <if test="jobName != null">
+        job_name = #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="methodName != null">
+        method_name = #{methodName,jdbcType=VARCHAR},
+      </if>
+      <if test="params != null">
+        params = #{params,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=BIGINT},
+      </if>
+      <if test="exceptionDetail != null">
+        exception_detail = #{exceptionDetail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where log_id = #{logId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="org.dy.system.domain.po.QuartzLogPo">
+    update sys_quartz_log
+    set bean_name = #{beanName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      cron_expression = #{cronExpression,jdbcType=VARCHAR},
+      is_success = #{isSuccess,jdbcType=BIT},
+      job_name = #{jobName,jdbcType=VARCHAR},
+      method_name = #{methodName,jdbcType=VARCHAR},
+      params = #{params,jdbcType=VARCHAR},
+      time = #{time,jdbcType=BIGINT},
+      exception_detail = #{exceptionDetail,jdbcType=LONGVARCHAR}
+    where log_id = #{logId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.dy.system.domain.po.QuartzLogPo">
+    update sys_quartz_log
+    set bean_name = #{beanName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      cron_expression = #{cronExpression,jdbcType=VARCHAR},
+      is_success = #{isSuccess,jdbcType=BIT},
+      job_name = #{jobName,jdbcType=VARCHAR},
+      method_name = #{methodName,jdbcType=VARCHAR},
+      params = #{params,jdbcType=VARCHAR},
+      time = #{time,jdbcType=BIGINT}
+    where log_id = #{logId,jdbcType=BIGINT}
+  </update>
+</mapper>

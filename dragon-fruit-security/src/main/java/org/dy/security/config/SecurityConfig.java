@@ -15,7 +15,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.core.GrantedAuthorityDefaults;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -23,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 import java.util.*;
 
@@ -70,64 +68,78 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-        Map<RequestMappingInfo, HandlerMethod> handlerMethodMap = applicationContext.getBean(RequestMappingHandlerMapping.class).getHandlerMethods();
-        // 获取匿名标记
-        Map<String, Set<String>> anonymousUrls = getAnonymousUrl(handlerMethodMap);
-        httpSecurity
-                // 禁用 CSRF
-                .csrf().disable()
-                .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
-                .addFilterBefore(new JwtLoginFilter("/auth/login", authenticationManager()), UsernamePasswordAuthenticationFilter.class)
-                .addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class)
-                // 授权异常
-                .exceptionHandling()
-                // 防止iframe 造成跨域
+        httpSecurity.authorizeRequests()
+//                .antMatchers("/admin/**").hasRole("admin")
+//                .antMatchers("/vip/**").hasRole("vip")
+//                .antMatchers("/user/**").hasRole("user")
+//                .antMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
+                .anyRequest().permitAll()
                 .and()
-                .headers()
-                .frameOptions()
-                .disable()
-                // 不创建会话
-                .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .authorizeRequests()
-                // 静态资源等等
-                .antMatchers(
-                        HttpMethod.GET,
-                        "/*.html",
-                        "/**/*.html",
-                        "/**/*.css",
-                        "/**/*.js",
-                        "/webSocket/**"
-                ).permitAll()
-                // swagger 文档
-                .antMatchers("/swagger-ui.html").permitAll()
-                .antMatchers("/swagger-resources/**").permitAll()
-                .antMatchers("/webjars/**").permitAll()
-                .antMatchers("/*/api-docs").permitAll()
-                // 文件
-                .antMatchers("/avatar/**").permitAll()
-                .antMatchers("/file/**").permitAll()
-                // 阿里巴巴 druid
-                .antMatchers("/druid/**").permitAll()
-                // 放行OPTIONS请求
-                .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                // 自定义匿名访问所有url放行：允许匿名和带Token访问，细腻化到每个 Request 类型
-                // GET
-                .antMatchers(HttpMethod.GET, anonymousUrls.get(RequestMethodEnum.GET.getType()).toArray(new String[0])).permitAll()
-                // POST
-                .antMatchers(HttpMethod.POST, anonymousUrls.get(RequestMethodEnum.POST.getType()).toArray(new String[0])).permitAll()
-                // PUT
-                .antMatchers(HttpMethod.PUT, anonymousUrls.get(RequestMethodEnum.PUT.getType()).toArray(new String[0])).permitAll()
-                // PATCH
-                .antMatchers(HttpMethod.PATCH, anonymousUrls.get(RequestMethodEnum.PATCH.getType()).toArray(new String[0])).permitAll()
-                // DELETE
-                .antMatchers(HttpMethod.DELETE, anonymousUrls.get(RequestMethodEnum.DELETE.getType()).toArray(new String[0])).permitAll()
-                // 所有类型的接口都放行
-                .antMatchers(anonymousUrls.get(RequestMethodEnum.ALL.getType()).toArray(new String[0])).permitAll()
-                // 所有请求都需要认证
-                .anyRequest().authenticated();
+//                .addFilterBefore(new JwtLoginFilter("/login", authenticationManager()), UsernamePasswordAuthenticationFilter.class)
+//                .addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class)
+                .csrf()
+                .disable();
+//        Map<RequestMappingInfo, HandlerMethod> handlerMethodMap = applicationContext.getBean(RequestMappingHandlerMapping.class).getHandlerMethods();
+//        // 获取匿名标记
+//        Map<String, Set<String>> anonymousUrls = getAnonymousUrl(handlerMethodMap);
+//        httpSecurity
+//                // 禁用 CSRF
+//                .csrf().disable()
+//                .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
+//                .addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class)
+//                // 授权异常
+//                .exceptionHandling()
+//                // 防止iframe 造成跨域
+//                .and()
+//                .headers()
+//                .frameOptions()
+//                .disable()
+//                // 不创建会话
+//                .and()
+//                .sessionManagement()
+//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                .and()
+//                .authorizeRequests()
+//                // 静态资源等等
+//                .antMatchers(
+//                        HttpMethod.GET,
+//                        "/*.html",
+//                        "/**/*.html",
+//                        "/**/*.css",
+//                        "/**/*.js",
+//                        "/webSocket/**"
+//                ).permitAll()
+//                .antMatchers(
+//                        HttpMethod.POST,
+//                        "/api/auth/login"
+//                ).permitAll()
+//                // swagger 文档
+//                .antMatchers("/swagger-ui.html").permitAll()
+//                .antMatchers("/swagger-resources/**").permitAll()
+//                .antMatchers("/webjars/**").permitAll()
+//                .antMatchers("/*/api-docs").permitAll()
+//                // 文件
+//                .antMatchers("/avatar/**").permitAll()
+//                .antMatchers("/file/**").permitAll()
+//                // 阿里巴巴 druid
+//                .antMatchers("/druid/**").permitAll()
+//                // 放行OPTIONS请求
+//                .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+//                // 自定义匿名访问所有url放行：允许匿名和带Token访问，细腻化到每个 Request 类型
+//                // GET
+//                .antMatchers(HttpMethod.GET, anonymousUrls.get(RequestMethodEnum.GET.getType()).toArray(new String[0])).permitAll()
+//                // POST
+//                .antMatchers(HttpMethod.POST, anonymousUrls.get(RequestMethodEnum.POST.getType()).toArray(new String[0])).permitAll()
+//                // PUT
+//                .antMatchers(HttpMethod.PUT, anonymousUrls.get(RequestMethodEnum.PUT.getType()).toArray(new String[0])).permitAll()
+//                // PATCH
+//                .antMatchers(HttpMethod.PATCH, anonymousUrls.get(RequestMethodEnum.PATCH.getType()).toArray(new String[0])).permitAll()
+//                // DELETE
+//                .antMatchers(HttpMethod.DELETE, anonymousUrls.get(RequestMethodEnum.DELETE.getType()).toArray(new String[0])).permitAll()
+//                // 所有类型的接口都放行
+//                .antMatchers(anonymousUrls.get(RequestMethodEnum.ALL.getType()).toArray(new String[0])).permitAll()
+//                // 所有请求都需要认证
+//                .anyRequest().authenticated();
     }
 
     private Map<String, Set<String>> getAnonymousUrl(Map<RequestMappingInfo, HandlerMethod> handlerMethodMap) {
