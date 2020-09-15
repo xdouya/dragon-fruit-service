@@ -1,4 +1,4 @@
-package org.dy.system.exception.handler;
+package org.dy.core.exception.handler;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;

@@ -2,11 +2,11 @@ package org.dy.system.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.dy.core.domain.dto.BaseDto;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 /**
  * 类说明

@@ -1,10 +1,9 @@
-package org.dy.system.domain.po;
+package org.dy.core.domain.po;
 
 import lombok.*;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.Date;
 
 /**
  * 持久化对象基类

@@ -1,10 +1,10 @@
-package org.dy.system.exception.handler;
+package org.dy.core.exception.handler;
 
 import lombok.extern.slf4j.Slf4j;
-import org.dy.system.exception.BadRequestException;
-import org.dy.system.exception.EntityExistException;
-import org.dy.system.exception.EntityNotFoundException;
-import org.dy.system.utils.ThrowableUtil;
+import org.dy.core.exception.BadRequestException;
+import org.dy.core.exception.EntityExistException;
+import org.dy.core.exception.EntityNotFoundException;
+import org.dy.core.utils.ThrowableUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;

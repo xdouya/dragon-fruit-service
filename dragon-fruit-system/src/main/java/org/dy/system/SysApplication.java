@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @date 2020/3/29 18:06
  */
 @SpringBootApplication
+@EnableTransactionManagement
 @MapperScan({"org.dy.system.dao"})
 public class SysApplication {
     public static void main(String[] args) {

@@ -1,7 +1,7 @@
 package org.dy.system.controller;
 
-import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
+import org.dy.core.annotation.AnonymousPostMapping;
 import org.dy.system.domain.dto.AuthUserDto;
 import org.dy.system.domain.po.UserPo;
 import org.dy.system.service.UserService;
@@ -24,7 +24,7 @@ public class AuthorizationController {
     @Autowired
     UserService userService;
 
-    @PostMapping("/login")
+    @AnonymousPostMapping(value = "/login")
     public ResponseEntity<Object> login(@RequestBody AuthUserDto authUser){
         UserPo userDto = userService.findByName(authUser.getUsername());
         return ResponseEntity.ok(userDto);

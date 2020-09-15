@@ -1,4 +1,4 @@
-package org.dy.system.utils;
+package org.dy.core.utils;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;

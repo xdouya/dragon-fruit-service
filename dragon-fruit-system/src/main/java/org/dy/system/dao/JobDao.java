@@ -1,5 +1,6 @@
 package org.dy.system.dao;
 
+import org.dy.core.dao.BaseDao;
 import org.dy.system.domain.po.JobPo;
 
 import java.util.List;

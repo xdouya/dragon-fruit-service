@@ -2,6 +2,7 @@ package org.dy.system.domain.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.dy.core.domain.dto.BaseDto;
 
 import java.io.Serializable;
 

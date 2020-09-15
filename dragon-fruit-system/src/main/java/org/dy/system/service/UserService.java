@@ -1,6 +1,5 @@
 package org.dy.system.service;
 
-import org.dy.system.domain.dto.UserDto;
 import org.dy.system.domain.po.UserPo;
 
 /**

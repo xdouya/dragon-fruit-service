@@ -30,18 +30,18 @@
         </javaTypeResolver>
 
         <!-- 生成模型的包名和位置-->
-        <javaModelGenerator targetProject="src/main/java" targetPackage="org.dy.system.domain.po">
+        <javaModelGenerator targetProject="src/main/java" targetPackage="org.dy.core.domain.po">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
         <!-- 生成映射文件的包名和位置-->
-        <sqlMapGenerator targetProject="src/main/java" targetPackage="org.dy.system.mapper">
+        <sqlMapGenerator targetProject="src/main/java" targetPackage="org.dy.core.mapper">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
         <!--生成接口位置-->
-        <javaClientGenerator  type="XMLMAPPER"  targetProject="src/main/java" targetPackage="org.dy.system.dao">
+        <javaClientGenerator  type="XMLMAPPER"  targetProject="src/main/java" targetPackage="org.dy.core.dao">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 

@@ -1,7 +1,6 @@
-package org.dy.system.domain.dto;
+package org.dy.core.domain.dto;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.io.Serializable;

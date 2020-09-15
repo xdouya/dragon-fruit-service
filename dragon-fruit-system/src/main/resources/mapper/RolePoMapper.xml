@@ -11,7 +11,7 @@
     <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
-    <collection column="{roleId=role_id}"  property="menus" ofType="org.dy.system.domain.po.RolePo" select="org.dy.system.dao.MenuDao.selectByRoleId" />
+    <collection column="{roleId=role_id}" property="menus" ofType="org.dy.system.domain.po.RolePo" select="org.dy.system.dao.MenuDao.selectByRoleId" />
     <collection column="{roleId=role_id}" property="depts" ofType="org.dy.system.domain.po.DeptPo" select="org.dy.system.dao.DeptDao.selectByRoleId" />
   </resultMap>
   <sql id="Base_Column_List" >

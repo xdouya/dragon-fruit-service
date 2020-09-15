@@ -1,4 +1,4 @@
-package org.dy.system.dao;
+package org.dy.core.dao;
 
 import java.io.Serializable;
 

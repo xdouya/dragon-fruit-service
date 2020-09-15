@@ -1,4 +1,4 @@
-package org.dy.system.exception;
+package org.dy.core.exception;
 
 /**
  * 关于错误配置信息异常
