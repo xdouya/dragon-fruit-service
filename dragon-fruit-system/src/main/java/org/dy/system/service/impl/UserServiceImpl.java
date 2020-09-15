@@ -1,13 +1,17 @@
 package org.dy.system.service.impl;
 
+import org.dy.system.dao.JobDao;
 import org.dy.system.dao.UserDao;
 import org.dy.system.domain.dto.UserDto;
+import org.dy.system.domain.po.JobPo;
 import org.dy.system.domain.po.UserPo;
 import org.dy.system.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author caiwl
@@ -19,8 +23,11 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserDao userDao;
 
+    @Autowired
+    JobDao jobDao;
+
     @Override
-    @Cacheable(key = "'username:' + #p0")
+//    @Cacheable(key = "'username:' + #p0")
     public UserPo findByName(String userName) {
         return userDao.selectByName(userName);
     }

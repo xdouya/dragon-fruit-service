@@ -91,12 +91,12 @@
             <version>${fastjson.version}</version>
         </dependency>
 
+        <!--spring boot 集成mybatis-generator-->
         <dependency>
             <groupId>org.mybatis.generator</groupId>
             <artifactId>mybatis-generator-core</artifactId>
             <version>${mybatis-generator.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.mybatis.generator</groupId>
             <artifactId>mybatis-generator-maven-plugin</artifactId>

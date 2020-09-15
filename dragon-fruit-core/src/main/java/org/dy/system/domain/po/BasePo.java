@@ -1,9 +1,6 @@
 package org.dy.system.domain.po;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -14,13 +11,14 @@ import java.util.Date;
  * @author caiwl
  * @date 2020/9/11 17:22
  */
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
 public abstract class BasePo implements Serializable {
     private String createBy;
-    private String updatedBy;
+    private String updateBy;
     private Timestamp createTime;
     private Timestamp updateTime;
 }

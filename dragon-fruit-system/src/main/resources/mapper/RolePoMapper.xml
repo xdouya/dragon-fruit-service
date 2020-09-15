@@ -11,18 +11,20 @@
     <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
-    <collection  property="menus" ofType="org.dy.system.domain.po.RolePo" select="org.dy.system.dao.MenuDao.selectByPrimaryKey" />
-    <collection property="depts" ofType="org.dy.system.domain.po.DeptPo" resultMap="org.dy.system.dao.DeptDao.BaseResultMap" />
+    <collection column="role_id"  property="menus" ofType="org.dy.system.domain.po.RolePo" select="org.dy.system.dao.MenuDao.selectByRoleId" />
+    <collection column="role_id" property="depts" ofType="org.dy.system.domain.po.DeptPo" select="org.dy.system.dao.DeptDao.selectByRoleId" />
   </resultMap>
   <sql id="Base_Column_List" >
     role_id, name, level, description, data_scope, create_by, update_by, create_time, 
     update_time
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select 
+    select
     <include refid="Base_Column_List" />
-    from sys_role
-    where role_id = #{roleId,jdbcType=BIGINT}
+    from
+      sys_role
+    where
+      role_id = #{roleId,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from sys_role
@@ -141,4 +143,14 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where role_id = #{roleId,jdbcType=BIGINT}
   </update>
+
+  <select id="selectByUserId" resultMap="BaseResultMap">
+    select
+      *
+    from
+      sys_user_role ur
+    left join sys_role r on r.role_id = ur.job_id
+    where
+      ur.user_id={userId, jdbcType=BIGINT}
+  </select>
 </mapper>

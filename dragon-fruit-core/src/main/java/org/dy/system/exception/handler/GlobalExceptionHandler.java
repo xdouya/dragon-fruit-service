@@ -7,7 +7,6 @@ import org.dy.system.exception.EntityNotFoundException;
 import org.dy.system.utils.ThrowableUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -37,13 +36,13 @@ public class GlobalExceptionHandler {
     /**
      * BadCredentialsException
      */
-    @ExceptionHandler(BadCredentialsException.class)
-    public ResponseEntity<ApiError> badCredentialsException(BadCredentialsException e){
-        // 打印堆栈信息
-        String message = "坏的凭证".equals(e.getMessage()) ? "用户名或密码不正确" : e.getMessage();
-        log.error(message);
-        return buildResponseEntity(ApiError.error(message));
-    }
+//    @ExceptionHandler(BadCredentialsException.class)
+//    public ResponseEntity<ApiError> badCredentialsException(BadCredentialsException e){
+//        // 打印堆栈信息
+//        String message = "坏的凭证".equals(e.getMessage()) ? "用户名或密码不正确" : e.getMessage();
+//        log.error(message);
+//        return buildResponseEntity(ApiError.error(message));
+//    }
 
     /**
      * 处理自定义异常

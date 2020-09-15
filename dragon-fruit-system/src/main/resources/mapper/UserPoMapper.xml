@@ -19,9 +19,9 @@
     <result column="pwd_reset_time" property="pwdResetTime" jdbcType="TIMESTAMP" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
-    <association property="dept" javaType="org.dy.system.domain.po.DeptPo" select="org.dy.system.dao.DeptDao.selectByPrimaryKey" />
-    <collection property="roles" ofType="org.dy.system.domain.po.RolePo" select="org.dy.system.dao.RoleDao.selectByPrimaryKey" />
-    <collection property="jobs" ofType="org.dy.system.domain.po.JobPo" select="org.dy.system.dao.JobDao.selectByPrimaryKey" />
+    <association column="dept_id" property="dept" javaType="org.dy.system.domain.po.DeptPo" select="org.dy.system.dao.DeptDao.selectByPrimaryKey" />
+    <!--<collection column="role_id" property="roles" ofType="org.dy.system.domain.po.RolePo" select="org.dy.system.dao.RoleDao.selectByPrimaryKey" />-->
+    <collection column="{userId=user_id}" property="jobs" ofType="org.dy.system.domain.po.JobPo" select="org.dy.system.dao.JobDao.selectByUserId" />
   </resultMap>
   <sql id="Base_Column_List" >
     user_id, dept_id, username, nick_name, gender, phone, email, avatar_name, avatar_path, 
@@ -234,4 +234,13 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where user_id = #{userId,jdbcType=BIGINT}
   </update>
+
+  <select id="selectByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+          *
+        from
+          sys_user u
+        where
+          u.username = #{userName,jdbcType=VARCHAR}
+   </select>
 </mapper>
