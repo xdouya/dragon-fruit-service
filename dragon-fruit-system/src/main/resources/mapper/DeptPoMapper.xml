@@ -151,13 +151,13 @@
     where dept_id = #{deptId,jdbcType=BIGINT}
   </update>
 
-  <select id="selectByRoleId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+  <select id="selectByRoleId" resultMap="BaseResultMap">
     select
       *
     from
-      sys_role_dept srd
-    left join sys_dept sd on sd.role_id = srd.role_id
+      sys_role_dept rd
+    left join sys_dept d on d.dept_id = rd.dept_id
     where
-      srd.role_id={roleId, jdbcType=BIGINT}
+      rd.role_id=#{roleId, jdbcType=BIGINT}
   </select>
 </mapper>

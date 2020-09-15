@@ -11,8 +11,8 @@
     <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
-    <collection column="role_id"  property="menus" ofType="org.dy.system.domain.po.RolePo" select="org.dy.system.dao.MenuDao.selectByRoleId" />
-    <collection column="role_id" property="depts" ofType="org.dy.system.domain.po.DeptPo" select="org.dy.system.dao.DeptDao.selectByRoleId" />
+    <collection column="{roleId=role_id}"  property="menus" ofType="org.dy.system.domain.po.RolePo" select="org.dy.system.dao.MenuDao.selectByRoleId" />
+    <collection column="{roleId=role_id}" property="depts" ofType="org.dy.system.domain.po.DeptPo" select="org.dy.system.dao.DeptDao.selectByRoleId" />
   </resultMap>
   <sql id="Base_Column_List" >
     role_id, name, level, description, data_scope, create_by, update_by, create_time, 
@@ -149,8 +149,8 @@
       *
     from
       sys_user_role ur
-    left join sys_role r on r.role_id = ur.job_id
+    left join sys_role r on r.role_id = ur.role_id
     where
-      ur.user_id={userId, jdbcType=BIGINT}
+      ur.user_id=#{userId, jdbcType=BIGINT}
   </select>
 </mapper>

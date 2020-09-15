@@ -243,13 +243,13 @@
     where menu_id = #{menuId,jdbcType=BIGINT}
   </update>
 
-  <select id="selectByRoleId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+  <select id="selectByRoleId" resultMap="BaseResultMap">
     select
       *
     from
-      sys_role_menu srm
-    left join sys_menu sm on srm.role_id = sm.role_id
+      sys_role_menu rm
+    left join sys_menu m on rm.menu_id = m.menu_id
     where
-      srm.role_id={roleId, jdbcType=BIGINT}
+      rm.role_id=#{roleId, jdbcType=BIGINT}
   </select>
 </mapper>

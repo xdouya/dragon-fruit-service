@@ -90,6 +90,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
+                //登录接口
+                .antMatchers(HttpMethod.POST, "/auth/login").permitAll()
                 // 静态资源等等
                 .antMatchers(
                         HttpMethod.GET,
@@ -98,10 +100,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.css",
                         "/**/*.js",
                         "/webSocket/**"
-                ).permitAll()
-                .antMatchers(
-                        HttpMethod.POST,
-                        "/auth/login"
                 ).permitAll()
                 // swagger 文档
                 .antMatchers("/swagger-ui.html").permitAll()
