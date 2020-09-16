@@ -10,11 +10,11 @@
     <version>1.0</version>
 
     <modules>
-        <module>eladmin-common</module>
-        <module>eladmin-logging</module>
-        <module>eladmin-system</module>
-        <module>eladmin-tools</module>
-        <module>eladmin-generator</module>
+        <module>dragon-fruit-common</module>
+        <module>dragon-fruit-logging</module>
+        <module>dragon-fruit-system</module>
+        <module>dragon-fruit-tools</module>
+        <module>dragon-fruit-generator</module>
     </modules>
 
     <name>dragon-fruit 后台管理</name>
