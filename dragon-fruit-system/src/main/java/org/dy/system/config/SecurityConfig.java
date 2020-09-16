@@ -1,9 +1,9 @@
-package org.dy.security.config;
+package org.dy.system.config;
 
 import lombok.RequiredArgsConstructor;
-import org.dy.security.annotation.AnonymousAccess;
-import org.dy.security.filter.JwtAuthenticationTokenFilter;
-import org.dy.security.utils.enums.RequestMethodEnum;
+import org.dy.core.annotation.AnonymousAccess;
+import org.dy.core.utils.enums.RequestMethodEnum;
+import org.dy.system.filter.JwtAuthenticationTokenFilter;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,7 +35,7 @@ import java.util.*;
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-//    private final CorsFilter corsFilter;
+    private final CorsFilter corsFilter;
     private final ApplicationContext applicationContext;
 
     @Bean
@@ -73,8 +73,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity
                 // 禁用 CSRF
                 .csrf().disable()
-//                .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
-//                .addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class)
                 // 授权异常
                 .exceptionHandling()
                 // 防止iframe 造成跨域

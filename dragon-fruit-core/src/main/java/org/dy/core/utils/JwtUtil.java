@@ -1,4 +1,4 @@
-package org.dy.security.utils;
+package org.dy.core.utils;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
@@ -8,7 +8,6 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**

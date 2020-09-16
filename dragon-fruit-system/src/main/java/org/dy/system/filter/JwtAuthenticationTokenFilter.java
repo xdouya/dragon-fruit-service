@@ -1,7 +1,6 @@
-package org.dy.security.filter;
+package org.dy.system.filter;
 
-
-import org.dy.security.utils.JwtUtil;
+import org.dy.core.utils.JwtUtil;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
