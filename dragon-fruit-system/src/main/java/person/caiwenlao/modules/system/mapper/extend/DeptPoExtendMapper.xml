@@ -9,5 +9,41 @@
         left join sys_dept d on d.dept_id = rd.dept_id
         where
           rd.role_id=#{roleId, jdbcType=BIGINT}
-  </select>
+    </select>
+
+    <select id="findByPid" resultMap="BaseResultMap">
+        select
+          *
+        from
+          sys_dept
+        where
+          pid=#{pid, jdbcType=BIGINT}
+    </select>
+
+    <select id="findByPidIsNull" resultMap="BaseResultMap">
+        select
+          *
+        from
+          sys_dept
+        where
+          pid is null
+    </select>
+
+    <select id="countByPid" resultType="java.lang.Integer">
+        select
+          count(1)
+        from
+          sys_dept
+        where
+          pid=#{pid, jdbcType=BIGINT}
+    </select>
+
+    <update id="updateSubCntById">
+        update
+          sys_dept
+        set
+          sub_count = #{count, jdbcType=Integer}
+        where
+          dept_id = #{deptId, jdbcType=BIGINT}
+    </update>
 </mapper>

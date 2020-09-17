@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="person.caiwenlao.modules.system.dao.LogDao" >
-  <resultMap id="BaseResultMap" type="person.caiwenlao.modules.system.domain.po.LogPo" >
+<mapper namespace="person.caiwenlao.dao.LogDao" >
+  <resultMap id="BaseResultMap" type="person.caiwenlao.domain.po.LogPo" >
     <id column="log_id" property="logId" jdbcType="BIGINT" />
     <result column="description" property="description" jdbcType="VARCHAR" />
     <result column="log_type" property="logType" jdbcType="VARCHAR" />
@@ -13,7 +13,7 @@
     <result column="browser" property="browser" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="person.caiwenlao.modules.system.domain.po.LogPo" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="person.caiwenlao.domain.po.LogPo" extends="BaseResultMap" >
     <result column="params" property="params" jdbcType="LONGVARCHAR" />
     <result column="exception_detail" property="exceptionDetail" jdbcType="LONGVARCHAR" />
   </resultMap>
@@ -36,7 +36,7 @@
     delete from sys_log
     where log_id = #{logId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="person.caiwenlao.modules.system.domain.po.LogPo" >
+  <insert id="insert" parameterType="person.caiwenlao.domain.po.LogPo" >
     insert into sys_log (log_id, description, log_type, 
       method, request_ip, time, 
       username, address, browser, 
@@ -48,7 +48,7 @@
       #{createTime,jdbcType=TIMESTAMP}, #{params,jdbcType=LONGVARCHAR}, #{exceptionDetail,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="person.caiwenlao.modules.system.domain.po.LogPo" >
+  <insert id="insertSelective" parameterType="person.caiwenlao.domain.po.LogPo" >
     insert into sys_log
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="logId != null" >
@@ -127,7 +127,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="person.caiwenlao.modules.system.domain.po.LogPo" >
+  <update id="updateByPrimaryKeySelective" parameterType="person.caiwenlao.domain.po.LogPo" >
     update sys_log
     <set >
       <if test="description != null" >
@@ -166,7 +166,7 @@
     </set>
     where log_id = #{logId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="person.caiwenlao.modules.system.domain.po.LogPo" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="person.caiwenlao.domain.po.LogPo" >
     update sys_log
     set description = #{description,jdbcType=VARCHAR},
       log_type = #{logType,jdbcType=VARCHAR},
@@ -181,7 +181,7 @@
       exception_detail = #{exceptionDetail,jdbcType=LONGVARCHAR}
     where log_id = #{logId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="person.caiwenlao.modules.system.domain.po.LogPo" >
+  <update id="updateByPrimaryKey" parameterType="person.caiwenlao.domain.po.LogPo" >
     update sys_log
     set description = #{description,jdbcType=VARCHAR},
       log_type = #{logType,jdbcType=VARCHAR},

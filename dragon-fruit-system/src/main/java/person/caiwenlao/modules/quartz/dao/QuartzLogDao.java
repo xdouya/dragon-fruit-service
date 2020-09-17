@@ -1,7 +1,7 @@
-package person.caiwenlao.modules.system.dao;
+package person.caiwenlao.modules.quartz.dao;
 
 import person.caiwenlao.base.BaseDao;
-import person.caiwenlao.modules.system.domain.po.QuartzLogPo;
+import person.caiwenlao.modules.quartz.domain.po.QuartzLogPo;
 
 /**
  * @author caiwenlao

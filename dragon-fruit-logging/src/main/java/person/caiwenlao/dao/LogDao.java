@@ -1,8 +1,7 @@
-package person.caiwenlao.modules.system.dao;
+package person.caiwenlao.dao;
 
 import person.caiwenlao.base.BaseDao;
-import person.caiwenlao.base.BasePo;
-import person.caiwenlao.modules.system.domain.po.LogPo;
+import person.caiwenlao.domain.po.LogPo;
 
 /**
  * @author caiwenlao

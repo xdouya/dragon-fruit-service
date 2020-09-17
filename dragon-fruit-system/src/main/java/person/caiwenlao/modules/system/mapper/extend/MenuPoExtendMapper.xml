@@ -1,13 +1,85 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="person.caiwenlao.modules.system.dao.MenuDao" >
+<mapper namespace="person.caiwenlao.modules.system.dao.MenuDao">
     <select id="findByRoleId" resultMap="BaseResultMap">
-    select
-      *
-    from
-      sys_roles_menus rm
-    left join sys_menu m on rm.menu_id = m.menu_id
-    where
-      rm.role_id=#{roleId, jdbcType=BIGINT}
-  </select>
+        select
+          *
+        from
+          sys_roles_menus rm
+        left join sys_menu m on rm.menu_id = m.menu_id
+        where
+          rm.role_id=#{roleId, jdbcType=BIGINT}
+    </select>
+
+    <select id="findByTitle" resultMap="BaseResultMap">
+        select
+          *
+        from
+          sys_menu
+        where
+          title=#{title, jdbcType=VARCHAR}
+    </select>
+
+    <select id="findByComponentName" resultMap="BaseResultMap">
+        select
+          *
+        from
+          sys_menu
+        where
+          name=#{name, jdbcType=VARCHAR}
+    </select>
+
+    <select id="findByPid" resultMap="BaseResultMap">
+        select
+          *
+        from
+          sys_menu
+        where
+          pid=#{pid, jdbcType=BIGINT}
+    </select>
+
+    <select id="findByPidIsNull" resultMap="BaseResultMap">
+        select
+          *
+        from
+          sys_menu
+        where
+          pid is null
+    </select>
+
+    <select id="findByRoleIdsAndTypeNot" resultMap="BaseResultMap">
+        select
+        m.*
+        from
+        sys_menu m, sys_roles_menus r
+        where
+        m.menu_id = r.menu_id AND r.role_id IN
+        <foreach collection="list" item="roleId" open="(" close=")" separator=",">
+            #{roleId, jdbcType=VARCHAR}
+        </foreach>
+        and
+        type != #{type, jdbcType=VARCHAR}
+        order by
+        m.menu_sort
+        asc
+    </select>
+
+    <select id="countByPid" resultType="java.lang.Integer">
+        select
+          count(1)
+        from
+          sys_menu
+        where
+          pid = #{pid, jdbcType=VARCHAR}
+    </select>
+
+    <update id="updateSubCntById">
+        update
+          sys_menu
+        set
+          sub_count = #{count, jdbcType=INTEGER}
+        where
+          menu_id = #{menuId, jdbcType=BIGINT}
+    </update>
+
 </mapper>

@@ -7,7 +7,7 @@
         <collection column="{userId=user_id}" property="jobs" ofType="person.caiwenlao.modules.system.domain.po.JobPo" select="person.caiwenlao.modules.system.dao.JobDao.findByUserId" />
     </resultMap>
 
-    <select id="findByUsername" resultMap="JoinResultMap" parameterType="java.lang.String" >
+    <select id="findByUsername" resultMap="JoinResultMap" >
         select
           *
         from
@@ -15,4 +15,109 @@
         where
           u.username = #{userName,jdbcType=VARCHAR}
    </select>
+    <select id="findByEmail" resultMap="JoinResultMap" >
+        select
+          *
+        from
+          sys_user u
+        where
+          u.email = #{email,jdbcType=VARCHAR}
+   </select>
+
+    <update id="updatePass">
+        update
+          sys_user
+        set
+          password = #{password,jdbcType=VARCHAR} , pwd_reset_time = #{pwdResetTime, jdbcType="TIMESTAMP"}
+        where username = #{username,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateEmail">
+        update
+          sys_user
+        set
+          email = #{email, jdbcType=VARCHAR}
+        where
+          username = #{username,jdbcType=VARCHAR}
+    </update>
+
+    <select id="findByRoleId" resultMap="BaseResultMap" >
+        select
+          u.*
+        from
+          sys_user u, sys_users_roles r
+        WHERE
+          u.user_id = r.user_id AND r.role_id = #{roleId, jbdcType=BIGINT}
+   </select>
+
+    <select id="findByDeptRoleId" resultMap="BaseResultMap" >
+        SELECT
+          u.*
+        FROM
+          sys_user u, sys_users_roles r, sys_roles_depts d
+        WHERE
+          u.user_id = r.user_id AND r.role_id = d.role_id AND r.role_id = #{roleId, jbdcType=BIGINT}
+        group by
+          u.user_id
+   </select>
+
+    <select id="findByMenuId" resultMap="BaseResultMap" >
+        SELECT
+          u.*
+        FROM
+          sys_user u, sys_users_roles ur, sys_roles_menus rm
+        WHERE
+          u.user_id = ur.user_id AND ur.role_id = rm.role_id AND rm.menu_id = #{menuId, jbdcType=BIGINT}
+        group by
+          u.user_id
+   </select>
+
+    <select id="countByJobs" resultType="java.lang.Integer" >
+        select
+          count(1)
+        from
+          sys_user u, sys_users_jobs j
+        where
+          u.user_id = j.user_id AND j.job_id
+        in
+        <foreach collection="list" item="jobId" open="(" close=")" separator=",">
+            #{jobId, jbdcType=BIGINT}
+        </foreach>
+   </select>
+
+    <select id="countByDepts" resultType="java.lang.Integer" >
+        select
+          count(1)
+        from
+          sys_user u
+        where
+          u.dept_id
+        in
+        <foreach collection="list" item="deptId" open="(" close=")" separator=",">
+            #{deptId, jbdcType=BIGINT}
+        </foreach>
+   </select>
+
+    <select id="countByRoles" resultType="java.lang.Integer" >
+        select
+          count(1)
+        from
+          sys_user u, sys_users_roles r
+        WHERE
+          u.user_id = r.user_id AND r.role_id in
+        <foreach collection="list" item="roleId" open="(" close=")" separator=",">
+            #{roleId, jbdcType=BIGINT}
+        </foreach>
+   </select>
+
+    <delete id="deleteAllByIdIn">
+         delete from
+          sys_user
+        where
+          user_id
+        in
+        <foreach collection="list" item="userId" open="(" close=")" separator=",">
+            #{userId, jbdcType=BIGINT}
+        </foreach>
+    </delete>
 </mapper>

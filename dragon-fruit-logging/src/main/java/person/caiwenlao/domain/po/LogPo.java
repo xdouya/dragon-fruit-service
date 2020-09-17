@@ -1,4 +1,4 @@
-package person.caiwenlao.modules.system.domain.po;
+package person.caiwenlao.domain.po;
 
 import lombok.*;
 import person.caiwenlao.base.BasePo;

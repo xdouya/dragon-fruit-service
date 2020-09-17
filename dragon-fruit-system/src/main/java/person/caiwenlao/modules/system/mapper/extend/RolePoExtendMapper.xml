@@ -16,4 +16,54 @@
           ur.user_id=#{userId, jdbcType=BIGINT}
    </select>
 
+    <select id="findByName" resultMap="BaseResultMap">
+        select
+          *
+        from
+          sys_role
+        where
+          name=#{name, jdbcType=VARCHAR}
+   </select>
+
+    <select id="countByDepts" resultType="java.lang.Integer">
+        select
+          count(1)
+        from
+          sys_role r, sys_roles_depts d
+        where
+          r.role_id = d.role_id and d.dept_id
+        in
+        <foreach collection="list" item="deptId" open="(" close=")" separator=",">
+            #{deptId, jbdcType=BIGINT}
+        </foreach>
+   </select>
+
+    <select id="findInMenuId" resultMap="BaseResultMap">
+        SELECT
+          r.* FROM sys_role r, sys_roles_menus m
+        WHERE
+          r.role_id = m.role_id AND m.menu_id
+        in
+        <foreach collection="list" item="menuId" open="(" close=")" separator=",">
+            #{menuId, jbdcType=BIGINT}
+        </foreach>
+   </select>
+
+    <delete id="deleteAllByIdIn">
+        delete from
+          sys_role
+        where
+          role_id
+        in
+        <foreach collection="list" item="roleId" open="(" close=")" separator=",">
+            #{roleId, jbdcType=BIGINT}
+        </foreach>
+    </delete>
+
+    <delete id="untiedMenu">
+        delete from
+          sys_roles_menus
+        where menu_id = #{menuId, jbdcType=BIGINT}
+    </delete>
+
 </mapper>
