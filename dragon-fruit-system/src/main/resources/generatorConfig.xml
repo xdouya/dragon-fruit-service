@@ -21,8 +21,8 @@
 
         <!-- 必须要有的，使用这个配置链接数据库-->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://192.168.0.103:3306/dragon_fruit?serverTimezone=UTC"
-                        userId="root" password="088114"/>
+                        connectionURL="jdbc:mysql://localhost:3306/dragon_fruit?serverTimezone=UTC"
+                        userId="root" password="xdy088114"/>
 
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
@@ -30,18 +30,18 @@
         </javaTypeResolver>
 
         <!-- 生成模型的包名和位置-->
-        <javaModelGenerator targetProject="src/main/java" targetPackage="org.dy.core.domain.po">
+        <javaModelGenerator targetProject="src/main/java" targetPackage="person.caiwenlao.modules.system.domain.po">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
-        <!-- 生成映射文件的包名和位置-->
-        <sqlMapGenerator targetProject="src/main/java" targetPackage="org.dy.core.mapper">
+         <!--生成映射文件的包名和位置-->
+        <sqlMapGenerator targetProject="src/main/java" targetPackage="person.caiwenlao.modules.system.mapper">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
         <!--生成接口位置-->
-        <javaClientGenerator  type="XMLMAPPER"  targetProject="src/main/java" targetPackage="org.dy.core.dao">
+        <javaClientGenerator  type="XMLMAPPER"  targetProject="src/main/java" targetPackage="person.caiwenlao.modules.system.dao">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
@@ -116,6 +116,5 @@
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
         </table>
-
     </context>
 </generatorConfiguration>

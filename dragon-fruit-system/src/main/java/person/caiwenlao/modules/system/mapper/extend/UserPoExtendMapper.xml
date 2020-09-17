@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="person.caiwenlao.modules.system.dao.UserDao" >
+    <resultMap id="JoinResultMap" type="person.caiwenlao.modules.system.domain.po.UserPo" extends="BaseResultMap">
+        <association column="{deptId=dept_id}" property="dept" javaType="person.caiwenlao.modules.system.domain.po.DeptPo" select="person.caiwenlao.modules.system.dao.DeptDao.selectByPrimaryKey" />
+        <collection column="{userId=user_id}" property="roles" ofType="person.caiwenlao.modules.system.domain.po.RolePo" select="person.caiwenlao.modules.system.dao.RoleDao.findByUserId" />
+        <collection column="{userId=user_id}" property="jobs" ofType="person.caiwenlao.modules.system.domain.po.JobPo" select="person.caiwenlao.modules.system.dao.JobDao.findByUserId" />
+    </resultMap>
+
+    <select id="findByUsername" resultMap="JoinResultMap" parameterType="java.lang.String" >
+        select
+          *
+        from
+          sys_user u
+        where
+          u.username = #{userName,jdbcType=VARCHAR}
+   </select>
+</mapper>

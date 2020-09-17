@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="person.caiwenlao.modules.system.dao.RoleDao" >
+    <resultMap id="JoinResultMap" type="person.caiwenlao.modules.system.domain.po.RolePo" extends="BaseResultMap">
+        <collection column="{roleId=role_id}" property="menus" ofType="person.caiwenlao.modules.system.domain.po.MenuPo" select="person.caiwenlao.modules.system.dao.MenuDao.findByRoleId" />
+        <collection column="{roleId=role_id}" property="depts" ofType="person.caiwenlao.modules.system.domain.po.DeptPo" select="person.caiwenlao.modules.system.dao.DeptDao.findByRoleId" />
+    </resultMap>
+
+    <select id="findByUserId" resultMap="JoinResultMap">
+        select
+          *
+        from
+           sys_users_roles ur
+        left join sys_role r on r.role_id = ur.role_id
+        where
+          ur.user_id=#{userId, jdbcType=BIGINT}
+   </select>
+
+</mapper>
