@@ -27,11 +27,11 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import person.caiwenlao.annotation.Log;
 import person.caiwenlao.exception.BadRequestException;
-import person.caiwenlao.modules.system.domain.Role;
+import person.caiwenlao.modules.system.domain.model.Role;
 import person.caiwenlao.modules.system.service.RoleService;
-import person.caiwenlao.modules.system.service.dto.RoleDto;
-import person.caiwenlao.modules.system.service.dto.RoleQueryCriteria;
-import person.caiwenlao.modules.system.service.dto.RoleSmallDto;
+import person.caiwenlao.modules.system.domain.dto.RoleDto;
+import person.caiwenlao.modules.system.domain.dto.RoleQueryCriteria;
+import person.caiwenlao.modules.system.domain.dto.RoleSmallDto;
 import person.caiwenlao.utils.SecurityUtils;
 
 import javax.servlet.http.HttpServletResponse;

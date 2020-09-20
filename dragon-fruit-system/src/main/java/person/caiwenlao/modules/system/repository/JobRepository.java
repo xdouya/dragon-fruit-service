@@ -15,7 +15,7 @@
  */
 package person.caiwenlao.modules.system.repository;
 
-import person.caiwenlao.modules.system.domain.Job;
+import person.caiwenlao.modules.system.domain.model.Job;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 

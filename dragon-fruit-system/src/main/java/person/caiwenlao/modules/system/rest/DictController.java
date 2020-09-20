@@ -26,9 +26,9 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import person.caiwenlao.annotation.Log;
 import person.caiwenlao.exception.BadRequestException;
-import person.caiwenlao.modules.system.domain.Dict;
+import person.caiwenlao.modules.system.domain.model.Dict;
 import person.caiwenlao.modules.system.service.DictService;
-import person.caiwenlao.modules.system.service.dto.DictQueryCriteria;
+import person.caiwenlao.modules.system.domain.dto.DictQueryCriteria;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;

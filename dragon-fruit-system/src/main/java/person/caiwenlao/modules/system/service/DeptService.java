@@ -15,9 +15,9 @@
  */
 package person.caiwenlao.modules.system.service;
 
-import person.caiwenlao.modules.system.domain.Dept;
-import person.caiwenlao.modules.system.service.dto.DeptDto;
-import person.caiwenlao.modules.system.service.dto.DeptQueryCriteria;
+import person.caiwenlao.modules.system.domain.model.Dept;
+import person.caiwenlao.modules.system.domain.dto.DeptDto;
+import person.caiwenlao.modules.system.domain.dto.DeptQueryCriteria;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;

@@ -26,11 +26,11 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import person.caiwenlao.annotation.Log;
 import person.caiwenlao.exception.BadRequestException;
-import person.caiwenlao.modules.system.domain.Menu;
+import person.caiwenlao.modules.system.domain.model.Menu;
 import person.caiwenlao.modules.system.service.MenuService;
-import person.caiwenlao.modules.system.service.dto.MenuDto;
-import person.caiwenlao.modules.system.service.dto.MenuQueryCriteria;
-import person.caiwenlao.modules.system.service.mapstruct.MenuMapper;
+import person.caiwenlao.modules.system.domain.dto.MenuDto;
+import person.caiwenlao.modules.system.domain.dto.MenuQueryCriteria;
+import person.caiwenlao.modules.system.mapstruct.MenuMapper;
 import person.caiwenlao.utils.PageUtil;
 import person.caiwenlao.utils.SecurityUtils;
 

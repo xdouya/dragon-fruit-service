@@ -15,7 +15,7 @@
  */
 package person.caiwenlao.modules.system.repository;
 
-import person.caiwenlao.modules.system.domain.DictDetail;
+import person.caiwenlao.modules.system.domain.model.DictDetail;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 

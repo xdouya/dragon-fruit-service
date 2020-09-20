@@ -22,13 +22,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import person.caiwenlao.modules.system.domain.Dict;
+import person.caiwenlao.modules.system.domain.model.Dict;
 import person.caiwenlao.modules.system.repository.DictRepository;
 import person.caiwenlao.modules.system.service.DictService;
-import person.caiwenlao.modules.system.service.dto.DictDetailDto;
-import person.caiwenlao.modules.system.service.dto.DictDto;
-import person.caiwenlao.modules.system.service.dto.DictQueryCriteria;
-import person.caiwenlao.modules.system.service.mapstruct.DictMapper;
+import person.caiwenlao.modules.system.domain.dto.DictDetailDto;
+import person.caiwenlao.modules.system.domain.dto.DictDto;
+import person.caiwenlao.modules.system.domain.dto.DictQueryCriteria;
+import person.caiwenlao.modules.system.mapstruct.DictMapper;
 import person.caiwenlao.utils.*;
 
 import javax.servlet.http.HttpServletResponse;

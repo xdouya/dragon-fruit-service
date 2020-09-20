@@ -18,7 +18,7 @@ package person.caiwenlao.modules.security.service.dto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import person.caiwenlao.modules.system.service.dto.UserDto;
+import person.caiwenlao.modules.system.domain.dto.UserDto;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

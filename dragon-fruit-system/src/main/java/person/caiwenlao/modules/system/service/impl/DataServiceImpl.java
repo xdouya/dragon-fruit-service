@@ -19,12 +19,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import person.caiwenlao.modules.system.domain.Dept;
+import person.caiwenlao.modules.system.domain.model.Dept;
 import person.caiwenlao.modules.system.service.DataService;
 import person.caiwenlao.modules.system.service.DeptService;
 import person.caiwenlao.modules.system.service.RoleService;
-import person.caiwenlao.modules.system.service.dto.RoleSmallDto;
-import person.caiwenlao.modules.system.service.dto.UserDto;
+import person.caiwenlao.modules.system.domain.dto.RoleSmallDto;
+import person.caiwenlao.modules.system.domain.dto.UserDto;
 import person.caiwenlao.utils.enums.DataScopeEnum;
 
 import java.util.*;

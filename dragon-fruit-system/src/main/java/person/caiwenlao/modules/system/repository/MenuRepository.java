@@ -15,7 +15,7 @@
  */
 package person.caiwenlao.modules.system.repository;
 
-import person.caiwenlao.modules.system.domain.Menu;
+import person.caiwenlao.modules.system.domain.model.Menu;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;

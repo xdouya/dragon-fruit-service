@@ -15,11 +15,11 @@
  */
 package person.caiwenlao.modules.system.service;
 
-import person.caiwenlao.modules.system.domain.Role;
-import person.caiwenlao.modules.system.service.dto.RoleDto;
-import person.caiwenlao.modules.system.service.dto.RoleQueryCriteria;
-import person.caiwenlao.modules.system.service.dto.RoleSmallDto;
-import person.caiwenlao.modules.system.service.dto.UserDto;
+import person.caiwenlao.modules.system.domain.model.Role;
+import person.caiwenlao.modules.system.domain.dto.RoleDto;
+import person.caiwenlao.modules.system.domain.dto.RoleQueryCriteria;
+import person.caiwenlao.modules.system.domain.dto.RoleSmallDto;
+import person.caiwenlao.modules.system.domain.dto.UserDto;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.GrantedAuthority;
 

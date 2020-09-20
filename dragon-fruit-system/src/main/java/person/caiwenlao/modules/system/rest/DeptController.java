@@ -26,10 +26,10 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import person.caiwenlao.annotation.Log;
 import person.caiwenlao.exception.BadRequestException;
-import person.caiwenlao.modules.system.domain.Dept;
+import person.caiwenlao.modules.system.domain.model.Dept;
 import person.caiwenlao.modules.system.service.DeptService;
-import person.caiwenlao.modules.system.service.dto.DeptDto;
-import person.caiwenlao.modules.system.service.dto.DeptQueryCriteria;
+import person.caiwenlao.modules.system.domain.dto.DeptDto;
+import person.caiwenlao.modules.system.domain.dto.DeptQueryCriteria;
 import person.caiwenlao.utils.PageUtil;
 
 import javax.servlet.http.HttpServletResponse;

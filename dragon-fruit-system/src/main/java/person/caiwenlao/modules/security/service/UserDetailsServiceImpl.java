@@ -26,7 +26,7 @@ import person.caiwenlao.modules.security.service.dto.JwtUserDto;
 import person.caiwenlao.modules.system.service.DataService;
 import person.caiwenlao.modules.system.service.RoleService;
 import person.caiwenlao.modules.system.service.UserService;
-import person.caiwenlao.modules.system.service.dto.UserDto;
+import person.caiwenlao.modules.system.domain.dto.UserDto;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

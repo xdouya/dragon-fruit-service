@@ -25,13 +25,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import person.caiwenlao.exception.BadRequestException;
 import person.caiwenlao.exception.EntityExistException;
-import person.caiwenlao.modules.system.domain.Job;
+import person.caiwenlao.modules.system.domain.model.Job;
 import person.caiwenlao.modules.system.repository.JobRepository;
 import person.caiwenlao.modules.system.repository.UserRepository;
 import person.caiwenlao.modules.system.service.JobService;
-import person.caiwenlao.modules.system.service.dto.JobDto;
-import person.caiwenlao.modules.system.service.dto.JobQueryCriteria;
-import person.caiwenlao.modules.system.service.mapstruct.JobMapper;
+import person.caiwenlao.modules.system.domain.dto.JobDto;
+import person.caiwenlao.modules.system.domain.dto.JobQueryCriteria;
+import person.caiwenlao.modules.system.mapstruct.JobMapper;
 import person.caiwenlao.utils.*;
 
 import javax.servlet.http.HttpServletResponse;

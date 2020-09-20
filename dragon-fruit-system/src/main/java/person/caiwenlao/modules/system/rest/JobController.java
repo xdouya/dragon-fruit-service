@@ -26,9 +26,9 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import person.caiwenlao.annotation.Log;
 import person.caiwenlao.exception.BadRequestException;
-import person.caiwenlao.modules.system.domain.Job;
+import person.caiwenlao.modules.system.domain.model.Job;
 import person.caiwenlao.modules.system.service.JobService;
-import person.caiwenlao.modules.system.service.dto.JobQueryCriteria;
+import person.caiwenlao.modules.system.domain.dto.JobQueryCriteria;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;

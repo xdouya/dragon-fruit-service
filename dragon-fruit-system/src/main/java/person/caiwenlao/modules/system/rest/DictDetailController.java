@@ -28,10 +28,10 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import person.caiwenlao.annotation.Log;
 import person.caiwenlao.exception.BadRequestException;
-import person.caiwenlao.modules.system.domain.DictDetail;
+import person.caiwenlao.modules.system.domain.model.DictDetail;
 import person.caiwenlao.modules.system.service.DictDetailService;
-import person.caiwenlao.modules.system.service.dto.DictDetailDto;
-import person.caiwenlao.modules.system.service.dto.DictDetailQueryCriteria;
+import person.caiwenlao.modules.system.domain.dto.DictDetailDto;
+import person.caiwenlao.modules.system.domain.dto.DictDetailQueryCriteria;
 
 import java.util.HashMap;
 import java.util.List;

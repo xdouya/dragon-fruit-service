@@ -15,9 +15,9 @@
  */
 package person.caiwenlao.modules.system.service;
 
-import person.caiwenlao.modules.system.domain.User;
-import person.caiwenlao.modules.system.service.dto.UserDto;
-import person.caiwenlao.modules.system.service.dto.UserQueryCriteria;
+import person.caiwenlao.modules.system.domain.model.User;
+import person.caiwenlao.modules.system.domain.dto.UserDto;
+import person.caiwenlao.modules.system.domain.dto.UserQueryCriteria;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
 

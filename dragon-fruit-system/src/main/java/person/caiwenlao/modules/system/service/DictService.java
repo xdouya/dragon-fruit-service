@@ -15,9 +15,9 @@
  */
 package person.caiwenlao.modules.system.service;
 
-import person.caiwenlao.modules.system.domain.Dict;
-import person.caiwenlao.modules.system.service.dto.DictDto;
-import person.caiwenlao.modules.system.service.dto.DictQueryCriteria;
+import person.caiwenlao.modules.system.domain.model.Dict;
+import person.caiwenlao.modules.system.domain.dto.DictDto;
+import person.caiwenlao.modules.system.domain.dto.DictQueryCriteria;
 import org.springframework.data.domain.Pageable;
 
 import javax.servlet.http.HttpServletResponse;

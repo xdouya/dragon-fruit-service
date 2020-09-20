@@ -15,7 +15,7 @@
  */
 package person.caiwenlao.modules.system.service;
 
-import person.caiwenlao.modules.system.service.dto.UserDto;
+import person.caiwenlao.modules.system.domain.dto.UserDto;
 
 import java.util.List;
 

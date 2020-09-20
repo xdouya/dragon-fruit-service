@@ -15,10 +15,10 @@
  */
 package person.caiwenlao.modules.system.service;
 
-import person.caiwenlao.modules.system.domain.Job;
-import person.caiwenlao.modules.system.service.dto.JobDto;
-import person.caiwenlao.modules.system.service.dto.JobQueryCriteria;
 import org.springframework.data.domain.Pageable;
+import person.caiwenlao.modules.system.domain.dto.JobDto;
+import person.caiwenlao.modules.system.domain.dto.JobQueryCriteria;
+import person.caiwenlao.modules.system.domain.model.Job;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
