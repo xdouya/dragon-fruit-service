@@ -3,23 +3,21 @@ package person.caiwenlao.base;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import java.io.Serializable;
-import java.lang.reflect.Field;
+
 import java.sql.Timestamp;
 
 /**
+ * 通用持久化对象，所有数据库表必须又这几个字段
  * @author caiwenlao
- * @date 2019年10月24日20:48:53
+ * @date 2020/9/17 9:18
  */
 @Getter
 @Setter
 @ToString
-public abstract class BaseDTO  implements Serializable {
-
+public abstract class BasePo {
     private String createBy;
 
-    private String updatedBy;
+    private String updateBy;
 
     private Timestamp createTime;
 
