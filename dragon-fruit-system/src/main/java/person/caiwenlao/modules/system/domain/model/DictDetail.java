@@ -16,7 +16,9 @@
 package person.caiwenlao.modules.system.domain.model;
 
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import person.caiwenlao.base.BaseEntity;
 
@@ -31,6 +33,8 @@ import java.io.Serializable;
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name="sys_dict_detail")
 public class DictDetail extends BaseEntity implements Serializable {
 

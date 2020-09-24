@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="person.caiwenlao.modules.system.dao.UserJobDao" >
+  <resultMap id="BaseResultMap" type="person.caiwenlao.modules.system.domain.model.UserJob" >
+    <id column="user_id" property="userId" jdbcType="BIGINT" />
+    <id column="job_id" property="jobId" jdbcType="BIGINT" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from sys_users_jobs
+    where user_id = #{userId,jdbcType=BIGINT}
+      and job_id = #{jobId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="person.caiwenlao.modules.system.domain.model.UserJob" >
+    insert into sys_users_jobs (user_id, job_id)
+    values (#{userId,jdbcType=BIGINT}, #{jobId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="person.caiwenlao.modules.system.domain.model.UserJob" >
+    insert into sys_users_jobs
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="jobId != null" >
+        job_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="jobId != null" >
+        #{jobId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

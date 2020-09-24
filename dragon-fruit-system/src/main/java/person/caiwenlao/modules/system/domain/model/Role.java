@@ -17,7 +17,9 @@ package person.caiwenlao.modules.system.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import person.caiwenlao.base.BaseEntity;
 import person.caiwenlao.utils.enums.DataScopeEnum;
@@ -36,6 +38,8 @@ import java.util.Set;
  */
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "sys_role")
 public class Role extends BaseEntity implements Serializable {

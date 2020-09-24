@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="person.caiwenlao.modules.system.dao.MenuDao" >
+  <resultMap id="BaseResultMap" type="person.caiwenlao.modules.system.domain.model.Menu" >
+    <id column="menu_id" property="id" jdbcType="BIGINT" />
+    <result column="pid" property="pid" jdbcType="BIGINT" />
+    <result column="sub_count" property="subCount" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="name" property="componentName" jdbcType="VARCHAR" />
+    <result column="component" property="component" jdbcType="VARCHAR" />
+    <result column="menu_sort" property="menuSort" jdbcType="INTEGER" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
+    <result column="i_frame" property="iFrame" jdbcType="BIT" />
+    <result column="cache" property="cache" jdbcType="BIT" />
+    <result column="hidden" property="hidden" jdbcType="BIT" />
+    <result column="permission" property="permission" jdbcType="VARCHAR" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    menu_id, pid, sub_count, type, title, name, component, menu_sort, icon, path, i_frame, 
+    cache, hidden, permission, create_by, update_by, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_menu
+    where menu_id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_menu
+    where menu_id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="person.caiwenlao.modules.system.domain.model.Menu" >
+    insert into sys_menu (menu_id, pid, sub_count, 
+      type, title, name, 
+      component, menu_sort, icon, 
+      path, i_frame, cache, hidden, 
+      permission, create_by, update_by, 
+      create_time, update_time)
+    values (#{id,jdbcType=BIGINT}, #{pid,jdbcType=BIGINT}, #{subCount,jdbcType=INTEGER},
+      #{type,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{componentName,jdbcType=VARCHAR},
+      #{component,jdbcType=VARCHAR}, #{menuSort,jdbcType=INTEGER}, #{icon,jdbcType=VARCHAR}, 
+      #{path,jdbcType=VARCHAR}, #{iFrame,jdbcType=BIT}, #{cache,jdbcType=BIT}, #{hidden,jdbcType=BIT}, 
+      #{permission,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR}, #{updateBy,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="person.caiwenlao.modules.system.domain.model.Menu" >
+    insert into sys_menu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        menu_id,
+      </if>
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="subCount != null" >
+        sub_count,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="componentName != null" >
+        name,
+      </if>
+      <if test="component != null" >
+        component,
+      </if>
+      <if test="menuSort != null" >
+        menu_sort,
+      </if>
+      <if test="icon != null" >
+        icon,
+      </if>
+      <if test="path != null" >
+        path,
+      </if>
+      <if test="iFrame != null" >
+        i_frame,
+      </if>
+      <if test="cache != null" >
+        cache,
+      </if>
+      <if test="hidden != null" >
+        hidden,
+      </if>
+      <if test="permission != null" >
+        permission,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=BIGINT},
+      </if>
+      <if test="subCount != null" >
+        #{subCount,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="componentName != null" >
+        #{componentName,jdbcType=VARCHAR},
+      </if>
+      <if test="component != null" >
+        #{component,jdbcType=VARCHAR},
+      </if>
+      <if test="menuSort != null" >
+        #{menuSort,jdbcType=INTEGER},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="iFrame != null" >
+        #{iFrame,jdbcType=BIT},
+      </if>
+      <if test="cache != null" >
+        #{cache,jdbcType=BIT},
+      </if>
+      <if test="hidden != null" >
+        #{hidden,jdbcType=BIT},
+      </if>
+      <if test="permission != null" >
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="person.caiwenlao.modules.system.domain.model.Menu" >
+    update sys_menu
+    <set >
+      <if test="pid != null" >
+        pid = #{pid,jdbcType=BIGINT},
+      </if>
+      <if test="subCount != null" >
+        sub_count = #{subCount,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="componentName != null" >
+        name = #{componentName,jdbcType=VARCHAR},
+      </if>
+      <if test="component != null" >
+        component = #{component,jdbcType=VARCHAR},
+      </if>
+      <if test="menuSort != null" >
+        menu_sort = #{menuSort,jdbcType=INTEGER},
+      </if>
+      <if test="icon != null" >
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="iFrame != null" >
+        i_frame = #{iFrame,jdbcType=BIT},
+      </if>
+      <if test="cache != null" >
+        cache = #{cache,jdbcType=BIT},
+      </if>
+      <if test="hidden != null" >
+        hidden = #{hidden,jdbcType=BIT},
+      </if>
+      <if test="permission != null" >
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where menu_id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="person.caiwenlao.modules.system.domain.model.Menu" >
+    update sys_menu
+    set pid = #{pid,jdbcType=BIGINT},
+      sub_count = #{subCount,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      name = #{componentName,jdbcType=VARCHAR},
+      component = #{component,jdbcType=VARCHAR},
+      menu_sort = #{menuSort,jdbcType=INTEGER},
+      icon = #{icon,jdbcType=VARCHAR},
+      path = #{path,jdbcType=VARCHAR},
+      i_frame = #{iFrame,jdbcType=BIT},
+      cache = #{cache,jdbcType=BIT},
+      hidden = #{hidden,jdbcType=BIT},
+      permission = #{permission,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where menu_id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

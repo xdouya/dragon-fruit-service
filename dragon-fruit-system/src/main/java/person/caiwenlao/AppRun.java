@@ -16,6 +16,7 @@
 package person.caiwenlao;
 
 import io.swagger.annotations.Api;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
@@ -26,13 +27,14 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.bind.annotation.RestController;
 import person.caiwenlao.annotation.rest.AnonymousGetMapping;
+import person.caiwenlao.utils.SnowFlakeIdWorker;
 import person.caiwenlao.utils.SpringContextHolder;
 
 /**
  * 开启审计功能 -> @EnableJpaAuditing
  *
- * @author Zheng Jie
- * @date 2018/11/15 9:20:19
+ * @author caiwenlao
+ * @date 2020/09/24 9:24:19
  */
 @EnableAsync
 @RestController
@@ -40,6 +42,7 @@ import person.caiwenlao.utils.SpringContextHolder;
 @SpringBootApplication
 @EnableTransactionManagement
 @EnableJpaAuditing(auditorAwareRef = "auditorAware")
+@MapperScan({"person.caiwenlao.**.dao"})
 public class AppRun {
 
     public static void main(String[] args) {
@@ -56,6 +59,11 @@ public class AppRun {
         TomcatServletWebServerFactory fa = new TomcatServletWebServerFactory();
         fa.addConnectorCustomizers(connector -> connector.setProperty("relaxedQueryChars", "[]{}"));
         return fa;
+    }
+
+    @Bean
+    public SnowFlakeIdWorker snowFlakeIdWorker(){
+        return new SnowFlakeIdWorker(1, 1, 1);
     }
 
     /**

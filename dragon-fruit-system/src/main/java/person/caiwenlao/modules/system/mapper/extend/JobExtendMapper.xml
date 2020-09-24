@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="person.caiwenlao.modules.system.dao.JobDao" >
+    <select id="findByUserId" resultMap="BaseResultMap">
+        select
+          *
+        from
+          sys_users_jobs uj
+        left join sys_job j on j.job_id = uj.job_id
+        where
+          uj.user_id=#{userId,jdbcType=BIGINT}
+    </select>
+
+    <select id="findByName" resultMap="BaseResultMap">
+        select
+          *
+        from
+          sys_job
+        where
+          name=#{name,jdbcType=VARCHAR}
+    </select>
+
+    <delete id="deleteAllByIdIn">
+        delete from
+          sys_job
+        where
+          job_id in
+        <foreach collection="list" item="id" open="(" close=")" separator=",">
+            #{id, jdbcType=BIGINT}
+        </foreach>
+    </delete>
+</mapper>

@@ -17,7 +17,9 @@ package person.caiwenlao.modules.system.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import person.caiwenlao.base.BaseEntity;
 
@@ -35,6 +37,8 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name="sys_dept")
 public class Dept extends BaseEntity implements Serializable {
 

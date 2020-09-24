@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.dy.system.dao.RoleDao" >
-  <resultMap id="BaseResultMap" type="org.dy.system.domain.po.RolePo" >
-    <id column="role_id" property="roleId" jdbcType="BIGINT" />
+<mapper namespace="person.caiwenlao.modules.system.dao.RoleDao" >
+  <resultMap id="BaseResultMap" type="person.caiwenlao.modules.system.domain.model.Role" >
+    <id column="role_id" property="id" jdbcType="BIGINT" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="level" property="level" jdbcType="INTEGER" />
     <result column="description" property="description" jdbcType="VARCHAR" />
@@ -11,39 +11,35 @@
     <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
-    <collection column="{roleId=role_id}" property="menus" ofType="org.dy.system.domain.po.RolePo" select="org.dy.system.dao.MenuDao.selectByRoleId" />
-    <collection column="{roleId=role_id}" property="depts" ofType="org.dy.system.domain.po.DeptPo" select="org.dy.system.dao.DeptDao.selectByRoleId" />
   </resultMap>
   <sql id="Base_Column_List" >
     role_id, name, level, description, data_scope, create_by, update_by, create_time, 
     update_time
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select
-    <include refid="Base_Column_List" />
-    from
-      sys_role
-    where
-      role_id = #{roleId,jdbcType=BIGINT}
+  <select id="selectByPrimaryKey" resultMap="JoinResultMap" parameterType="java.lang.Long" >
+    select 
+      *
+    from sys_role
+    where role_id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from sys_role
-    where role_id = #{roleId,jdbcType=BIGINT}
+    where role_id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="org.dy.system.domain.po.RolePo" >
+  <insert id="insert" parameterType="person.caiwenlao.modules.system.domain.model.Role" >
     insert into sys_role (role_id, name, level, 
       description, data_scope, create_by, 
       update_by, create_time, update_time
       )
-    values (#{roleId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER},
       #{description,jdbcType=VARCHAR}, #{dataScope,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR}, 
       #{updateBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="org.dy.system.domain.po.RolePo" >
+  <insert id="insertSelective" parameterType="person.caiwenlao.modules.system.domain.model.Role" >
     insert into sys_role
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="roleId != null" >
+      <if test="id != null" >
         role_id,
       </if>
       <if test="name != null" >
@@ -72,8 +68,8 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="roleId != null" >
-        #{roleId,jdbcType=BIGINT},
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
       </if>
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
@@ -101,7 +97,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="org.dy.system.domain.po.RolePo" >
+  <update id="updateByPrimaryKeySelective" parameterType="person.caiwenlao.modules.system.domain.model.Role" >
     update sys_role
     <set >
       <if test="name != null" >
@@ -129,9 +125,9 @@
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where role_id = #{roleId,jdbcType=BIGINT}
+    where role_id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="org.dy.system.domain.po.RolePo" >
+  <update id="updateByPrimaryKey" parameterType="person.caiwenlao.modules.system.domain.model.Role" >
     update sys_role
     set name = #{name,jdbcType=VARCHAR},
       level = #{level,jdbcType=INTEGER},
@@ -141,16 +137,6 @@
       update_by = #{updateBy,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP}
-    where role_id = #{roleId,jdbcType=BIGINT}
+    where role_id = #{id,jdbcType=BIGINT}
   </update>
-
-  <select id="selectByUserId" resultMap="BaseResultMap">
-    select
-      *
-    from
-      sys_user_role ur
-    left join sys_role r on r.role_id = ur.role_id
-    where
-      ur.user_id=#{userId, jdbcType=BIGINT}
-  </select>
 </mapper>

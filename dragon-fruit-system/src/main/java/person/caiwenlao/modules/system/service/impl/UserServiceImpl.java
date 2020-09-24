@@ -28,7 +28,10 @@ import person.caiwenlao.exception.EntityExistException;
 import person.caiwenlao.exception.EntityNotFoundException;
 import person.caiwenlao.modules.security.service.OnlineUserService;
 import person.caiwenlao.modules.security.service.UserCacheClean;
-import person.caiwenlao.modules.system.domain.model.User;
+import person.caiwenlao.modules.system.dao.UserDao;
+import person.caiwenlao.modules.system.dao.UserJobDao;
+import person.caiwenlao.modules.system.dao.UserRoleDao;
+import person.caiwenlao.modules.system.domain.model.*;
 import person.caiwenlao.modules.system.repository.UserRepository;
 import person.caiwenlao.modules.system.service.UserService;
 import person.caiwenlao.modules.system.domain.dto.JobSmallDto;
@@ -54,6 +57,9 @@ import java.util.stream.Collectors;
 @CacheConfig(cacheNames = "user")
 public class UserServiceImpl implements UserService {
 
+    private final UserDao userDao;
+    private final UserRoleDao userRoleDao;
+    private final UserJobDao userJobDao;
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final FileProperties properties;
@@ -77,7 +83,7 @@ public class UserServiceImpl implements UserService {
     @Cacheable(key = "'id:' + #p0")
     @Transactional(rollbackFor = Exception.class)
     public UserDto findById(long id) {
-        User user = userRepository.findById(id).orElseGet(User::new);
+        User user = userDao.selectByPrimaryKey(id);
         ValidationUtil.isNull(user.getId(), "User", "id", id);
         return userMapper.toDto(user);
     }
@@ -85,13 +91,25 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void create(User resources) {
-        if (userRepository.findByUsername(resources.getUsername()) != null) {
+        if (userDao.findByUsername(resources.getUsername()) != null) {
             throw new EntityExistException(User.class, "username", resources.getUsername());
         }
-        if (userRepository.findByEmail(resources.getEmail()) != null) {
+        if (userDao.findByEmail(resources.getEmail()) != null) {
             throw new EntityExistException(User.class, "email", resources.getEmail());
         }
-        userRepository.save(resources);
+        userDao.insert(resources);
+        //插入sys_user_role信息
+        List<UserRole> userRoles = new ArrayList<>();
+        for (Role role : resources.getRoles()) {
+            userRoles.add(new UserRole(resources.getId(), role.getId()));
+        }
+        userRoleDao.batchInsert(userRoles);
+        //插入sys_user_job信息
+        List<UserJob> userJobs = new ArrayList<>();
+        for (Job job : resources.getJobs()) {
+            userJobs.add(new UserJob(resources.getId(), job.getId()));
+        }
+        userJobDao.batchInsert(userJobs);
     }
 
     @Override
@@ -163,7 +181,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Cacheable(key = "'username:' + #p0")
     public UserDto findByName(String userName) {
-        User user = userRepository.findByUsername(userName);
+        User user = userDao.findByUsername(userName);
         if (user == null) {
             throw new EntityNotFoundException(User.class, "name", userName);
         } else {

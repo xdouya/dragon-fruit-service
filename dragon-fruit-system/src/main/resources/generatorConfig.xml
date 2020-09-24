@@ -21,8 +21,8 @@
 
         <!-- 必须要有的，使用这个配置链接数据库-->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://192.168.0.103:3306/dragon_fruit?serverTimezone=UTC"
-                        userId="root" password="088114"/>
+                        connectionURL="jdbc:mysql://localhost:3306/dragon_fruit?serverTimezone=UTC"
+                        userId="root" password="xdy088114"/>
 
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
@@ -30,92 +30,112 @@
         </javaTypeResolver>
 
         <!-- 生成模型的包名和位置-->
-        <javaModelGenerator targetProject="src/main/java" targetPackage="org.dy.core.domain.po">
+        <javaModelGenerator targetProject="src/main/java" targetPackage="person.caiwenlao.modules.system.domain.model">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
         <!-- 生成映射文件的包名和位置-->
-        <sqlMapGenerator targetProject="src/main/java" targetPackage="org.dy.core.mapper">
+        <sqlMapGenerator targetProject="src/main/java" targetPackage="person.caiwenlao.modules.system.mapper">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
         <!--生成接口位置-->
-        <javaClientGenerator  type="XMLMAPPER"  targetProject="src/main/java" targetPackage="org.dy.core.dao">
+        <javaClientGenerator  type="XMLMAPPER"  targetProject="src/main/java" targetPackage="person.caiwenlao.modules.system.dao">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
-        <table tableName="sys_dept" domainObjectName="DeptPo"
+        <table tableName="sys_roles_depts" domainObjectName="RoleDept"
+            enableCountByExample="false" enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false">
+        </table>
+        <table tableName="sys_roles_menus" domainObjectName="RoleMenu"
+            enableCountByExample="false" enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false">
+        </table>
+        <table tableName="sys_users_jobs" domainObjectName="UserJob"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
         </table>
-        <table tableName="sys_dict" domainObjectName="DictPo"
+        <table tableName="sys_users_roles" domainObjectName="UserRole"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
         </table>
-        <table tableName="sys_dict_detail" domainObjectName="DictDetailPo"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
-        <table tableName="sys_job" domainObjectName="JobPo"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
-        <table tableName="sys_log" domainObjectName="LogPo"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
-        <table tableName="sys_menu" domainObjectName="MenuPo"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
-        <table tableName="sys_quartz" domainObjectName="QuartzPo"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
-        <table tableName="sys_quartz_log" domainObjectName="QuartzLogPo"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
-        <table tableName="sys_role" domainObjectName="RolePo"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
-        <table tableName="sys_role_Dept" domainObjectName="RoleDeptPo"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
-        <table tableName="sys_role_menu" domainObjectName="RoleMenuPo"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
-        <table tableName="sys_user" domainObjectName="UserPo"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
-        <table tableName="sys_user_job" domainObjectName="UserJobPo"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
-        <table tableName="sys_user_role" domainObjectName="UserRolePo"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
+        <!--<table tableName="sys_dept" domainObjectName="DeptPo"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="sys_dict" domainObjectName="DictPo"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="sys_dict_detail" domainObjectName="DictDetailPo"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="sys_job" domainObjectName="JobPo"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="sys_log" domainObjectName="LogPo"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="sys_menu" domainObjectName="MenuPo"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="sys_quartz" domainObjectName="QuartzPo"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="sys_quartz_log" domainObjectName="QuartzLogPo"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="sys_role" domainObjectName="RolePo"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="sys_role_Dept" domainObjectName="RoleDeptPo"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="sys_role_menu" domainObjectName="RoleMenuPo"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="sys_user" domainObjectName="UserPo"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="sys_user_job" domainObjectName="UserJobPo"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
+        <!--<table tableName="sys_user_role" domainObjectName="UserRolePo"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+        <!--</table>-->
 
     </context>
 </generatorConfiguration>

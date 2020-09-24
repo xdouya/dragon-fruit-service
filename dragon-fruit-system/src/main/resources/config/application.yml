@@ -20,6 +20,11 @@ spring:
         ddl-auto: none
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
     open-in-view: true
+mybatis:
+  mapper-locations: classpath*:person/caiwenlao/**/mapper/**/*Mapper.xml
+  config-location: classpath:mybatis/mybatis-config.xml
+
+
 task:
   pool:
     # 核心线程池大小

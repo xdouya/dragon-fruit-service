@@ -1,7 +1,8 @@
 package person.caiwenlao.modules.system.dao;
 
+
 import person.caiwenlao.base.BaseDao;
-import person.caiwenlao.modules.system.domain.po.UserPo;
+import person.caiwenlao.modules.system.domain.model.User;
 
 import java.util.Date;
 import java.util.List;
@@ -11,20 +12,20 @@ import java.util.Set;
  * @author caiwenlao
  * @date 2020/09/17
  */
-public interface UserDao extends BaseDao<UserPo, Long> {
+public interface UserDao extends BaseDao<User, Long> {
     /**
      * 根据用户名查询
      * @param username 用户名
      * @return /
      */
-    UserPo findByUsername(String username);
+    User findByUsername(String username);
 
     /**
      * 根据邮箱查询
      * @param email 邮箱
      * @return /
      */
-    UserPo findByEmail(String email);
+    User findByEmail(String email);
 
     /**
      * 修改密码
@@ -46,21 +47,21 @@ public interface UserDao extends BaseDao<UserPo, Long> {
      * @param roleId /
      * @return /
      */
-    List<UserPo> findByRoleId(Long roleId);
+    List<User> findByRoleId(Long roleId);
 
     /**
      * 根据角色中的部门查询
      * @param roleId /
      * @return /
      */
-    List<UserPo> findByDeptRoleId(Long roleId);
+    List<User> findByDeptRoleId(Long roleId);
 
     /**
      * 根据菜单查询
      * @param menuId 菜单ID
      * @return /
      */
-    List<UserPo> findByMenuId(Long menuId);
+    List<User> findByMenuId(Long menuId);
 
     /**
      * 根据Id删除

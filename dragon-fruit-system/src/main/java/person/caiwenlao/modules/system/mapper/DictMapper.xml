@@ -1,51 +1,51 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.dy.system.dao.JobDao" >
-  <resultMap id="BaseResultMap" type="org.dy.system.domain.po.JobPo" >
-    <id column="job_id" property="jobId" jdbcType="BIGINT" />
+<mapper namespace="person.caiwenlao.modules.system.dao.DictDao" >
+  <resultMap id="BaseResultMap" type="person.caiwenlao.modules.system.domain.model.Dict" >
+    <id column="dict_id" property="id" jdbcType="BIGINT" />
     <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="enabled" property="enabled" jdbcType="BIT" />
-    <result column="job_sort" property="jobSort" jdbcType="INTEGER" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
     <result column="create_by" property="createBy" jdbcType="VARCHAR" />
     <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    job_id, name, enabled, job_sort, create_by, update_by, create_time, update_time
+    dict_id, name, description, create_by, update_by, create_time, update_time
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="selectByPrimaryKey" resultMap="JoinResultMap" parameterType="java.lang.Long" >
     select 
-    <include refid="Base_Column_List" />
-    from sys_job
-    where job_id = #{jobId,jdbcType=BIGINT}
+      *
+    from
+      sys_dict
+    where
+      dict_id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from sys_job
-    where job_id = #{jobId,jdbcType=BIGINT}
+    delete from
+      sys_dict
+    where
+      dict_id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="org.dy.system.domain.po.JobPo" >
-    insert into sys_job (job_id, name, enabled, 
-      job_sort, create_by, update_by, 
-      create_time, update_time)
-    values (#{jobId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{enabled,jdbcType=BIT}, 
-      #{jobSort,jdbcType=INTEGER}, #{createBy,jdbcType=VARCHAR}, #{updateBy,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  <insert id="insert" parameterType="person.caiwenlao.modules.system.domain.model.Dict" >
+    insert into sys_dict (dict_id, name, description, 
+      create_by, update_by, create_time, 
+      update_time)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR},
+      #{createBy,jdbcType=VARCHAR}, #{updateBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="org.dy.system.domain.po.JobPo" >
-    insert into sys_job
+  <insert id="insertSelective" parameterType="person.caiwenlao.modules.system.domain.model.Dict" >
+    insert into sys_dict
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="jobId != null" >
-        job_id,
+      <if test="id != null" >
+        dict_id,
       </if>
       <if test="name != null" >
         name,
       </if>
-      <if test="enabled != null" >
-        enabled,
-      </if>
-      <if test="jobSort != null" >
-        job_sort,
+      <if test="description != null" >
+        description,
       </if>
       <if test="createBy != null" >
         create_by,
@@ -61,17 +61,14 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="jobId != null" >
-        #{jobId,jdbcType=BIGINT},
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
       </if>
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="enabled != null" >
-        #{enabled,jdbcType=BIT},
-      </if>
-      <if test="jobSort != null" >
-        #{jobSort,jdbcType=INTEGER},
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
       </if>
       <if test="createBy != null" >
         #{createBy,jdbcType=VARCHAR},
@@ -87,17 +84,14 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="org.dy.system.domain.po.JobPo" >
-    update sys_job
+  <update id="updateByPrimaryKeySelective" parameterType="person.caiwenlao.modules.system.domain.model.Dict" >
+    update sys_dict
     <set >
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="enabled != null" >
-        enabled = #{enabled,jdbcType=BIT},
-      </if>
-      <if test="jobSort != null" >
-        job_sort = #{jobSort,jdbcType=INTEGER},
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
       </if>
       <if test="createBy != null" >
         create_by = #{createBy,jdbcType=VARCHAR},
@@ -112,27 +106,16 @@
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where job_id = #{jobId,jdbcType=BIGINT}
+    where dict_id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="org.dy.system.domain.po.JobPo" >
-    update sys_job
+  <update id="updateByPrimaryKey" parameterType="person.caiwenlao.modules.system.domain.model.Dict" >
+    update sys_dict
     set name = #{name,jdbcType=VARCHAR},
-      enabled = #{enabled,jdbcType=BIT},
-      job_sort = #{jobSort,jdbcType=INTEGER},
+      description = #{description,jdbcType=VARCHAR},
       create_by = #{createBy,jdbcType=VARCHAR},
       update_by = #{updateBy,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP}
-    where job_id = #{jobId,jdbcType=BIGINT}
+    where dict_id = #{id,jdbcType=BIGINT}
   </update>
-
-  <select id="selectByUserId" resultMap="BaseResultMap">
-    select
-      *
-    from
-      sys_user_job uj
-    left join sys_job j on j.job_id = uj.job_id
-    where
-      uj.user_id=#{userId,jdbcType=BIGINT}
-  </select>
 </mapper>
